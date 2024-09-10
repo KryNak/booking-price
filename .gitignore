@@ -1,2 +1,4 @@
 node_modules
 push.sh
+.gitsecret/keys/random_seed
+!*.secret

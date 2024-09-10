@@ -8,7 +8,10 @@ app.use(bodyParser.json())
 const USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
 
 app.post('/booking-price', asyncHandler(async (req, res) => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        args: ['--no-sandbox'],
+        timeout: 10000,
+    });
     const page = await browser.newPage();
     await page.setUserAgent(USER_AGENT)
 
