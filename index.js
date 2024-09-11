@@ -1,4 +1,5 @@
-import puppeteer from 'puppeteer';
+import { executablePath } from "puppeteer";
+import puppeteerCore from 'puppeteer-core';
 import {JSDOM} from 'jsdom'
 import express from 'express'
 import asyncHandler from 'express-async-handler'
@@ -22,10 +23,11 @@ app.use((err, req, res, next) => {
 });
 
 app.post('/booking-price', asyncHandler(async (req, res) => {
-    const browser = await puppeteer.launch({
+    const browser = await puppeteerCore.launch({
         args: ['--no-sandbox', '--lang=pl-PL'],
         timeout: 10000,
-        headless: true
+        headless: true,
+        executablePath: executablePath()
     });
     // const cookies = [
     //     {
